@@ -38,3 +38,15 @@ Remove all images
 <pre>
 docker rmi -f $(docker images -q)
 </pre>
+
+Create container
+
+<pre>
+docker create --rm --name name org/image
+</pre>
+
+Start container
+
+<pre>
+docker start name
+</pre>
