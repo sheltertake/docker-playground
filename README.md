@@ -50,3 +50,11 @@ Start container
 <pre>
 docker start name
 </pre>
+
+Logs container
+
+<pre>
+docker logs -f exampleApp3000
+</pre>
+
+-f monitor the output
