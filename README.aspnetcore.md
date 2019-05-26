@@ -62,3 +62,22 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 8b75d5b93b8a        maxbnet/mvc         "dotnet mvc.dll"    About a minute ago   Up 58 seconds       0.0.0.0:4000->80/tcp   mvc4000
 e1649522ba22        maxbnet/mvc         "dotnet mvc.dll"    3 minutes ago        Up 3 minutes        0.0.0.0:3000->80/tcp   mvc3000
 </pre>
+
+# Removing first mvc impl
+
+<pre>
+PS C:\Users\Max> docker stop mvc3000
+mvc3000
+PS C:\Users\Max> docker stop mvc4000
+mvc4000
+PS C:\Users\Max> docker rmi -f $(docker images -q)
+</pre>   
+
+# Rebuild docker
+
+<pre>
+dotnet publish --configuration Release --output dist
+docker build . -t maxbnet/mvc -f Dockerfile
+docker run --rm -p 3000:80 --name mvc3000 maxbnet/mvc
+docker run --rm -p 4000:80 --name mvc4000 maxbnet/mvc
+</pre>
